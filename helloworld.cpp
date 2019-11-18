@@ -44,6 +44,24 @@ void append(text *t1, text *t2)
     strcat(t1->content, t2->content);
 }
 
+text *slice(text *t, int i, int j)
+{
+
+    char s[100];
+
+    int ctCopy = j - i + 1;
+
+    char *srcCopy = t->content + i;
+
+    memcpy(s, srcCopy, ctCopy);
+
+    char *srcZero = s + ctCopy;
+
+    *srcZero = 0;
+
+    return (newText(s));
+}
+
 int main()
 {
     char s[100];
@@ -55,4 +73,6 @@ int main()
     text *t2 = newText(s);
 
     append(t1, t2);
+
+    text *t3 = slice(t1, 6, 11);
 }
